@@ -54,19 +54,45 @@
         Parse.initialize("JfMeozLs8UZFxaZibAiZhlpDl5OZkyjVwzdxLfqw", "fi6LWURzRGmTg7neZfI79MJaB2QHjWhiZ4nVFvKD");
         Parse.serverURL = "https://parseapi.back4app.com/";
 
-        create();
+        async function saveNewPlayer() {
+        //Create your Parse Object
+        const soccerPlayers = new Parse.Object("SoccerPlayers");
 
-    function create() {
-    mypet = new Pet();
-    mypet.set("name", textName);
-    mypet.set("agePet", textAge);
+        //Define its attributes
+        soccerPlayers.set("playerName", "A. Wed");
+        soccerPlayers.set("yearOfBirth", 1997);
+        soccerPlayers.set("emailContact", "a.wed@email.io");
+        soccerPlayers.set("attributes", ["fast","good conditioning"])
+        try{
+            //Save the Object
+            let result = await soccerPlayers.save()
+            alert('New object created with objectId: ' + result.id);
+        }catch(error){
+            alert('Failed to create new object, with error code: ' + error.message);
+        }
+    } 
 
-    mypet.save().then(function(pet){
-         console.log('Pet created successful with name: ' + pet.get("name") + ' and age: ' + pet.get("agePet"));
-    }).catch(function(error){
-         console.log('Error: ' + error.message);
-    });
-}
+    Parse.initialize('YOUR_APP_ID_HERE','YOUR_JAVASCRIPT_KEY_HERE');
+Parse.serverURL = 'https://parseapi.back4app.com/';
+
+async function saveNewPlayer() {
+        //Create your Parse Object
+        const soccerPlayers = new Parse.Object("SoccerPlayers");
+
+        //Define its attributes
+        soccerPlayers.set("playerName", "A. Wed");
+        soccerPlayers.set("yearOfBirth", 1997);
+        soccerPlayers.set("emailContact", "a.wed@email.io");
+        soccerPlayers.set("attributes", ["fast","good conditioning"])
+        try{
+            //Save the Object
+            let result = await soccerPlayers.save()
+            alert('New object created with objectId: ' + result.id);
+        }catch(error){
+            alert('Failed to create new object, with error code: ' + error.message);
+        }
+    } 
+
       </script>
 
     <script src="scripts/funcoes.js"></script>
