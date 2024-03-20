@@ -9,90 +9,42 @@
     
 </head>
 <body>
-    <nav class="navbar navbar-expand-md navbar-light fixed-top py-3 custom-nav">
-        <a href="home.html" class="navbar-brand">
-          <img src="../img/books.png" alt="">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-    
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a href="vendas.html" class="nav-link"> Vender Livro</a>
-            </li>
-            <li class="nav-item">
-              <a href="contato.html" class="nav-link">Contato</a>
-            </li>
-            <li class="nav-item">
-              <a href="vender.html" class="nav-link">Vender</a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">login</a>
-            </li>
-            <li class="nav-item">
-              <a href="inscricao.html" class="btn btn-outline-primary ml-md-2">Inscreva-se</a>
-            </li>
-          </ul>
-        </div>
-    </nav>
-    
-      <section class="depoimento" aria-label="depoimento">
-        <div class="depoimento-imagem">
-          <img src="../img/chuttersnap-Zf64Osndqvc-unsplash.jpg" alt="">
-        </div>
-        <div class="depoimento-conteudo">
-          <blockquote>
-            <p>
-              "Uma mente que lê é uma mente que voa além das fronteiras do comum, expandindo horizontes e desbravando mundos inexplorados. A leitura é a chave mestra que abre portas para a compreensão, a empatia e o conhecimento, tornando-se a luz que guia os passos daqueles que ousam explorar os tesouros escondidos nas páginas do saber."</p>
-          </blockquote>
-          <span>Um autor desconhecido</span>
-        </div>
-      </section>
+  <h1>JS SDK</h1>   
+  <input id="username" type="text" placeholder="Username"/>
+  <input id="email" type="email" placeholder="Email"/>
+  <input id="password" type="password" placeholder="Password" />
+  <button id="createButton">Create User</button>
       <script>
         Parse.initialize("JfMeozLs8UZFxaZibAiZhlpDl5OZkyjVwzdxLfqw", "fi6LWURzRGmTg7neZfI79MJaB2QHjWhiZ4nVFvKD");
         Parse.serverURL = "https://parseapi.back4app.com/";
 
-        async function saveNewPlayer() {
-        //Create your Parse Object
-        const soccerPlayers = new Parse.Object("SoccerPlayers");
+        async function createParseUser() {
+  // Creates a new Parse "User" object, which is created by default in your Parse app
+  let user = new Parse.User();
+  // Set the input values to the new "User" object
+  user.set("username", document.getElementById("username").value);
+  user.set("email", document.getElementById("email").value);
+  user.set("password", document.getElementById("password").value);
+  try {
+    // Call the save method, which returns the saved object if successful
+    user = await user.save();
+    if (user !== null) {
+      // Notify the success by getting the attributes from the "User" object, by using the get method (the id attribute needs to be accessed directly, though)
+      alert(
+        `New object created with success! ObjectId: ${
+          user.id
+        }, ${user.get("username")}`
+      );
+    }
+  } catch (error) {
+    alert(`Error: ${error.message}`);
+  }
+}
 
-        //Define its attributes
-        soccerPlayers.set("playerName", "A. Wed");
-        soccerPlayers.set("yearOfBirth", 1997);
-        soccerPlayers.set("emailContact", "a.wed@email.io");
-        soccerPlayers.set("attributes", ["fast","good conditioning"])
-        try{
-            //Save the Object
-            let result = await soccerPlayers.save()
-            alert('New object created with objectId: ' + result.id);
-        }catch(error){
-            alert('Failed to create new object, with error code: ' + error.message);
-        }
-    } 
-
-    Parse.initialize('YOUR_APP_ID_HERE','YOUR_JAVASCRIPT_KEY_HERE');
-Parse.serverURL = 'https://parseapi.back4app.com/';
-
-async function saveNewPlayer() {
-        //Create your Parse Object
-        const soccerPlayers = new Parse.Object("SoccerPlayers");
-
-        //Define its attributes
-        soccerPlayers.set("playerName", "A. Wed");
-        soccerPlayers.set("yearOfBirth", 1997);
-        soccerPlayers.set("emailContact", "a.wed@email.io");
-        soccerPlayers.set("attributes", ["fast","good conditioning"])
-        try{
-            //Save the Object
-            let result = await soccerPlayers.save()
-            alert('New object created with objectId: ' + result.id);
-        }catch(error){
-            alert('Failed to create new object, with error code: ' + error.message);
-        }
-    } 
-
+// Add on click listener to call the create parse user function
+document.getElementById("createButton").addEventListener("click", async function () {
+  createParseUser();
+});
       </script>
 
     <script src="scripts/funcoes.js"></script>
