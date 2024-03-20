@@ -8,11 +8,53 @@
 
 </head>
 <body>
-    <h1>JS SDK</h1>   
-<input id="username" type="text" placeholder="Username"/>
-<input id="email" type="email" placeholder="Email"/>
-<input id="password" type="password" placeholder="Password" />
-<button id="createButton">Create User</button>
+    <nav class="navbar navbar-expand-md navbar-light fixed-top py-3 custom-nav">
+        <a href="home.html" class="navbar-brand">
+          <img src="../frontend/assets/img/books.png" alt="">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a href="perfil.html" class="nav-link">Perfil</a>
+            </li>
+            <li class="nav-item">
+              <a href="contato.html" class="nav-link">Contato</a>
+            </li>
+            <li class="nav-item">
+              <a href="vender.html" class="nav-link">Vender</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">login</a>
+            </li>
+            <li class="nav-item">
+              <a href="inscricao.html" class="btn btn-outline-primary ml-md-2">Inscreva-se</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    
+      <section class="depoimento" aria-label="depoimento">
+        <div class="depoimento-imagem">
+          <img src="../frontend/assets/img/chuttersnap-Zf64Osndqvc-unsplash.jpg" alt="">
+        </div>
+        <div class="depoimento-conteudo">
+          <blockquote>
+            <p>
+              "Uma mente que lê é uma mente que voa além das fronteiras do comum, expandindo horizontes e desbravando mundos inexplorados. A leitura é a chave mestra que abre portas para a compreensão, a empatia e o conhecimento, tornando-se a luz que guia os passos daqueles que ousam explorar os tesouros escondidos nas páginas do saber."</p>
+          </blockquote>
+          <span>Um autor desconhecido</span>
+        </div>
+      </section>
+
+
+
+
+
+      
     <script>
         // Initialize Parse
           Parse.initialize("rI7MzjMSkgalJx8Me3HsfkwVuqXLH4VnNFKGgXmT", "mVaYJbkTiKvdpjgaFHrkBl4F7p3xd6HFTDIphygm"); //PASTE HERE YOUR Back4App APPLICATION ID AND YOUR JavaScript KEY
