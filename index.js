@@ -1,6 +1,6 @@
 const Parse = require('parse/node');
-const express = require('express')
-const app = express()
+const express = require('express');
+const app = express();
 
 const APP_ID ="rI7MzjMSkgalJx8Me3HsfkwVuqXLH4VnNFKGgXmT";
 const JAVASCRIPT_ID ="mVaYJbkTiKvdpjgaFHrkBl4F7p3xd6HFTDIphygm";
@@ -35,6 +35,10 @@ async function saveNewPerson() {
           alert('Failed to create new object, with error code: ' + error.message);
       }
     } 
+
+    app.get('/',function(res,req){
+        res.render("index.html")
+    })
   
   //Reading your First Data Object from Back4App
   async function retrievePerson() {
