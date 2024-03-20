@@ -1,32 +1,29 @@
 
-// Initialize Parse
-  Parse.initialize("rI7MzjMSkgalJx8Me3HsfkwVuqXLH4VnNFKGgXmT", "mVaYJbkTiKvdpjgaFHrkBl4F7p3xd6HFTDIphygm"); //PASTE HERE YOUR Back4App APPLICATION ID AND YOUR JavaScript KEY
-  Parse.serverURL = "https://parseapi.back4app.com/";
 
-  async function createParseUser() {
-// Creates a new Parse "User" object, which is created by default in your Parse app
-let user = new Parse.User();
-// Set the input values to the new "User" object
-user.set("username", document.getElementById("username").value);
-user.set("email", document.getElementById("email").value);
-user.set("password", document.getElementById("password").value);
-try {
-// Call the save method, which returns the saved object if successful
-user = await user.save();
-if (user !== null) {
-// Notify the success by getting the attributes from the "User" object, by using the get method (the id attribute needs to be accessed directly, though)
-alert(
-`New object created with success! ObjectId: ${
-  user.id
-}, ${user.get("username")}`
-);
-}
-} catch (error) {
-alert(`Error: ${error.message}`);
-}
-}
-
-// Add on click listener to call the create parse user function
-document.getElementById("createButton").addEventListener("click", async function () {
-createParseUser();
-});
+  async function saveNewPerson() {
+    const person = new Parse.Object("Person");
+  
+    person.set("name", "John Snow");
+    person.set("age", 27);
+    try {
+      let result = await person.save()
+      alert('New object created with objectId: ' + result.id);
+      } catch(error) {
+          alert('Failed to create new object, with error code: ' + error.message);
+      }
+    } 
+  
+  //Reading your First Data Object from Back4App
+  async function retrievePerson() {
+    const query = new Parse.Query("Person");
+    
+    try {
+      const person = await query.get("mhPFDlCahj");
+      const name = person.get("name");
+      const age = person.get("age");
+    
+      alert(`Name: ${name} age: ${age}`);
+    } catch (error) {
+      alert(`Failed to retrieve the object, with error code: ${error.message}`);
+    }
+  }  
