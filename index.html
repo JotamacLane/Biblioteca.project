@@ -54,33 +54,19 @@
         Parse.initialize("JfMeozLs8UZFxaZibAiZhlpDl5OZkyjVwzdxLfqw", "fi6LWURzRGmTg7neZfI79MJaB2QHjWhiZ4nVFvKD");
         Parse.serverURL = "https://parseapi.back4app.com/";
 
-        async function saveNewPerson() {
-        const person = new Parse.Object("Person");
+        create();
 
-        person.set("name", "John Snow");
-        person.set("age", 27);
-        try {
-          let result = await person.save()
-          alert('New object created with objectId: ' + result.id);
-          } catch(error) {
-              alert('Failed to create new object, with error code: ' + error.message);
-          }
-        } 
+    function create() {
+    mypet = new Pet();
+    mypet.set("name", textName);
+    mypet.set("agePet", textAge);
 
-      //Reading your First Data Object from Back4App
-      async function retrievePerson() {
-        const query = new Parse.Query("Person");
-        
-        try {
-          const person = await query.get("mhPFDlCahj");
-          const name = person.get("name");
-          const age = person.get("age");
-        
-          alert(`Name: ${name} age: ${age}`);
-        } catch (error) {
-          alert(`Failed to retrieve the object, with error code: ${error.message}`);
-        }
-      }  
+    mypet.save().then(function(pet){
+         console.log('Pet created successful with name: ' + pet.get("name") + ' and age: ' + pet.get("agePet"));
+    }).catch(function(error){
+         console.log('Error: ' + error.message);
+    });
+}
       </script>
 
     <script src="scripts/funcoes.js"></script>
